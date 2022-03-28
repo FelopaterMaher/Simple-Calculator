@@ -1,31 +1,77 @@
-﻿
-Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.1.32210.238
-MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "calculator", "calculator\calculator.vcxproj", "{3291FC73-2BD9-4B3F-9995-E25B484FC1D9}"
-EndProject
-Global
-	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug|x64 = Debug|x64
-		Debug|x86 = Debug|x86
-		Release|x64 = Release|x64
-		Release|x86 = Release|x86
-	EndGlobalSection
-	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{3291FC73-2BD9-4B3F-9995-E25B484FC1D9}.Debug|x64.ActiveCfg = Debug|x64
-		{3291FC73-2BD9-4B3F-9995-E25B484FC1D9}.Debug|x64.Build.0 = Debug|x64
-		{3291FC73-2BD9-4B3F-9995-E25B484FC1D9}.Debug|x86.ActiveCfg = Debug|Win32
-		{3291FC73-2BD9-4B3F-9995-E25B484FC1D9}.Debug|x86.Build.0 = Debug|Win32
-		{3291FC73-2BD9-4B3F-9995-E25B484FC1D9}.Release|x64.ActiveCfg = Release|x64
-		{3291FC73-2BD9-4B3F-9995-E25B484FC1D9}.Release|x64.Build.0 = Release|x64
-		{3291FC73-2BD9-4B3F-9995-E25B484FC1D9}.Release|x86.ActiveCfg = Release|Win32
-		{3291FC73-2BD9-4B3F-9995-E25B484FC1D9}.Release|x86.Build.0 = Release|Win32
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {AC6ABDC7-E337-45E8-8DD4-97C6B1D394AD}
-	EndGlobalSection
-EndGlobal
+//sample calculator made by Felopater Maher
+#include <iostream>
+using namespace std; 
+
+int main()
+{ 
+    start:
+    double dNum1 = 0;
+    double dNum2 = 0;
+    double dResult = 0;
+    int iChoice = 0;
+
+   
+
+CalculatorStartingPoint: //goto re back here
+
+    cout << "Enter 2 numbers: ";
+    cin >> dNum1 >> dNum2;
+
+    //input validation 
+    if (cin.fail()) 
+    {
+        cout << "You should enter correct values\n\n";
+        cin.clear();
+        cin.ignore(10000, '\n');
+        goto CalculatorStartingPoint;
+    }
+
+MenuStartingPoint:
+    cout << "\nMenu options:\n";
+    cout << "\tTo sum the number enter 1\n";
+    cout << "\tTo subtract the number enter 2\n";
+    cout << "\tTo multiply the number enter 3\n";
+    cout << "\tTo divide the number enter 4\n";
+    cout << "\tTo enter the 2 numbers again, enter 5\n";
+  
+
+    cout << "enter your choice: ";
+    cin >> iChoice;
+
+    //input Validation 
+    if (cin.fail())
+    {
+        cout << "You should enter correct values\n\n";
+        cin.clear();
+        cin.ignore(10000, '\n');
+        goto MenuStartingPoint;
+    }
+
+    //logic for programm
+    if (iChoice == 1)
+        dResult = dNum1 + dNum2;
+    else if (iChoice == 2)
+        dResult = dNum1 - dNum2;
+    else if (iChoice == 3)
+        dResult = dNum1 *dNum2;
+    else if (iChoice == 4)
+    {
+        if (dNum2 == 0.0)
+        {
+
+            cout << "\t\t we can't divide by zero, Rety other 2 numbers \n\n";
+            goto CalculatorStartingPoint;
+        }
+        dResult = dNum1 / dNum2;
+    }
+    else if(iChoice ==5)
+        goto CalculatorStartingPoint;
+    else
+    {
+        cout << "\t\tChoice must be from 1 to 5 \n\n";
+        goto MenuStartingPoint;
+    }
+    cout << "\nResult of operation: " << dResult << endl;
+    goto start;
+    return 0;
+}
