@@ -9,9 +9,6 @@ int main()
     double dNum2 = 0;
     double dResult = 0;
     int iChoice = 0;
-
-   
-
 CalculatorStartingPoint: //goto re back here
 
     cout << "Enter 2 numbers: ";
@@ -25,7 +22,6 @@ CalculatorStartingPoint: //goto re back here
         cin.ignore(10000, '\n');
         goto CalculatorStartingPoint;
     }
-
 MenuStartingPoint:
     cout << "\nMenu options:\n";
     cout << "\tTo sum the number enter 1\n";
@@ -33,11 +29,8 @@ MenuStartingPoint:
     cout << "\tTo multiply the number enter 3\n";
     cout << "\tTo divide the number enter 4\n";
     cout << "\tTo enter the 2 numbers again, enter 5\n";
-  
-
-    cout << "enter your choice: ";
+    cout<< "enter your choice: ";
     cin >> iChoice;
-
     //input Validation 
     if (cin.fail())
     {
@@ -46,7 +39,6 @@ MenuStartingPoint:
         cin.ignore(10000, '\n');
         goto MenuStartingPoint;
     }
-
     //logic for programm
     if (iChoice == 1)
         dResult = dNum1 + dNum2;
@@ -58,7 +50,6 @@ MenuStartingPoint:
     {
         if (dNum2 == 0.0)
         {
-
             cout << "\t\t we can't divide by zero, Rety other 2 numbers \n\n";
             goto CalculatorStartingPoint;
         }
